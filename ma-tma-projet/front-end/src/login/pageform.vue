@@ -1,5 +1,7 @@
 <template>
-    <div>
+  <div>
+    <!-- Affiche le formulaire de connexion si l'utilisateur n'est pas connecté -->
+    <div id="app" v-if="! isLoggedIn">
       <h2>Connexion</h2>
       <form @submit.prevent="submitForm">
         <div>
@@ -13,12 +15,14 @@
         <button type="submit">Se connecter</button>
       </form>
     </div>
-  </template>
-  
-  <script>
-  import axios from 'axios';
 
-  async function loginFunction(username, password, router) {
+  </div>
+</template>
+  
+<script>
+import axios from 'axios';
+
+async function loginFunction(username, password) {
   try {
     const response = await axios.post('http://127.0.0.1:5000/login', {
       nom_utilisateur: username,
@@ -29,7 +33,7 @@
 
     if (response.status == 200) {
       console.log('Connexion réussie');
-      router.push({path : '/loggedSuccess'});
+      return true; // Connexion réussie, retourne true
     } else {
       console.log('Connexion échouée');
       return false; // Connexion échouée, retourne false
@@ -41,27 +45,29 @@
 }
 
 export default {
-  name: 'LoginForm',
+  name: 'loginForm',
   data() {
     return {
       username: '',
       password: '',
+      isLoggedIn: false 
     };
+  },
+  components: {
   },
   methods: {
     async submitForm() {
       try {
-        // Utilisez loginFunction ici
-        await loginFunction(this.username, this.password, this.$router);
-        // Autres actions après la soumission du formulaire
+        const isSuccess = await loginFunction(this.username, this.password);
+        if (isSuccess) {
+          // Si la connexion réussit, définissez la variable isLoggedIn sur true
+          this.$router.push({ name: 'loggedSuccess' });
+        }
       } catch (error) {
         console.error('Une erreur s\'est produite lors de la soumission du formulaire :', error);
       }
     }
   }
 };
-
-  
-
   </script>
-  
+

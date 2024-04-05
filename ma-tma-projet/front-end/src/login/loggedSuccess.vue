@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="app">
       <h2>Connexion réussie!</h2>
       <p>Bienvenue, {{ username }}!</p>
     </div>
@@ -7,14 +7,14 @@
   
   <script>
   export default {
-    name: 'LoggedSuccess',
+    name: 'loggedSuccess',
     data() {
       return {
-        username: '' // Vous pouvez récupérer le nom d'utilisateur connecté depuis le back-end
-      };
+        username: 'Utilisateur'};
+    },
+    components: {
     },
     methods: {
     }
   };
   </script>
-  

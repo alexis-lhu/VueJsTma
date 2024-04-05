@@ -1,26 +1,20 @@
 <template>
-  <div id="app">
-    <login-form /> <!-- Utilisation du composant loginForm -->
+  <div>
+    <!-- Exemple de bouton pour naviguer vers la page de connexion -->
+    <button @click="navigateToLogin">Page de connexion</button>
   </div>
 </template>
 
 <script>
-import { loginForm } from './routes/route.js';
-
-
-
 export default {
   name: 'App',
-  components: {
-    loginForm,
-  },
-  
-};
-
-
-
-
-
+  methods: {
+    navigateToLogin() {
+      // Utilisation du routeur pour naviguer vers la page de connexion
+      this.$router.push({ name: 'LoginForm' });
+    }
+  }
+}
 </script>
 
 <style>
