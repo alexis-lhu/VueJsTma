@@ -15,37 +15,20 @@ utilisateur = {
 }
 
 # Page de connexion
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST'])
 def login():
-    if request.method == 'GET':
-        # Répondez simplement à la requête OPTIONS avec les en-têtes CORS appropriés
-        return '', 204
-
     if request.method == 'POST':
-        # Récupérer les données de la requête
         infos = request.get_json()
         nom_utilisateur = infos['nom_utilisateur']
         mot_de_passe = infos['mot_de_passe']
         if nom_utilisateur == utilisateur['nom_utilisateur'] and mot_de_passe == utilisateur['mot_de_passe']:
-            # Si l'authentification réussit, enregistrez l'utilisateur dans la session
             session['connecte'] = True
-            return '',200
+            return 'oui',200
         else:
-            return '',401
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
+            return 'non',200
+    return 'non',200
+        
+        
 
 
 # Page de déconnexion
@@ -63,4 +46,18 @@ def logggedSuccess():
         return jsonify({'message': 'Connecté'})
     else:
         return jsonify({'message': 'Non connecté'})
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+
+
+
+
+
 

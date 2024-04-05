@@ -1,20 +1,23 @@
 <template>
-  <div>
-    <!-- Exemple de bouton pour naviguer vers la page de connexion -->
-    <button @click="navigateToLogin">Page de connexion</button>
+  <div id="app">
+    <router-view/>
   </div>
 </template>
 
 <script>
+import router from './routes/route.js';
+
 export default {
   name: 'App',
-  methods: {
-    navigateToLogin() {
-      // Utilisation du routeur pour naviguer vers la page de connexion
-      this.$router.push({ name: 'LoginForm' });
-    }
-  }
-}
+  router
+};
+
+
+
+
+
+
+
 </script>
 
 <style>

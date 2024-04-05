@@ -1,21 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import loginForm from '../login/pageform.vue';
-import loggedSuccess from '../login/loggedSuccess.vue';
+import loginForm from '@/login/pageform.vue';
+import LoggedSuccess from '@/login/loggedSuccess.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/login',
-      name: 'LoginForm',
-      component: loginForm
+      component: loginForm,
     },
     {
       path: '/loggedSuccess',
-      name: 'LoggedSuccess',
-      component: loggedSuccess
-    }
-  ]
+      component: LoggedSuccess,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+  ],
+  scrollBehavior: (to, from, savedPosition) => savedPosition || { x: 0, y: 0 },
 });
 
 export default router;
