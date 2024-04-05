@@ -30,10 +30,10 @@ async function loginFunction(username, password, router) {
         if (response.status == 200) {
             if (response.data == "non") {
                 console.log('Connexion refusée');
-                document.querySelector('h2').textContent = 'Sale juif';
+                document.querySelector('h2').textContent = 'Mince! Connexion refusée! Veuillez réessayer.';
             } else {
                 console.log('Connexion réussie');
-                router.push({path : '/loggedSuccess', params : {username: username}});
+                router.push({ path: '/loggedSuccess', query: { username }});
             }
         }
     } catch (error) {
@@ -41,7 +41,6 @@ async function loginFunction(username, password, router) {
         return false;
     }
 }
-
 export default {
     name: 'LoginForm',
     data() {

@@ -8,9 +8,14 @@
 <script>
 export default {
     name: 'LoggedSuccess',
-    mounted() {
-        const username = this.$route.params.username;
-        console.log('Username:', username);
-    }
+    data() {
+  return {
+    username: ''
+  };
+},
+created() {
+  this.username = this.$route.query.username;
+  console.log('username:', this.username);
+}
 }
 </script>

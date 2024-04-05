@@ -12,12 +12,6 @@ export default {
   router
 };
 
-
-
-
-
-
-
 </script>
 
 <style>
